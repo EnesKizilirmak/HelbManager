@@ -1,0 +1,170 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %} <!--debut override du content block-->
+
+{% if user.is_authenticated %}
+
+    <link rel="stylesheet" href="{% static 'blog/status.css' %}"/>
+
+      
+    {% for post in posts %}
+        {% if post.project_finished == False %} 
+            {% now "Y-m-d, H:i" as current_time %}
+            {% if current_time > post.deadline|date:"Y-m-d, H:i" %}     <!--FIRST IF : DEADLINE NOT PASSED CONDITION ! --> 
+
+            <div data-aos="fade-down" data-aos-duration="3000">
+
+              <h4><b>Deadline passed for '{{ post.title }}' ! </b></h4>
+              <p>Here you can check your project status !</p>
+
+              <b>Project Id : </b>{{ post.id }}</a><br>
+              <b>Project Manager : </b>{{ post.author }} <br>
+              <b>Collabolators  : </b>{{ post.collaborators }} <br>
+             <div class="deadline-passed"><b>Deadline was for : </b>{{ post.deadline|date:"d F, Y, H:i"}}</div> 
+
+            </div>
+
+            {% else %}
+                
+                <!-- DRAG AND DROP INTERFACE -->
+                <div data-aos="fade-up" data-aos-duration="3000">
+
+                <h4><b>Drag & Drop Interface for '{{ post.title }}' ! </b></h4>
+                <p>Here you can check your project status !</p>
+
+                <b>Project Id : </b>{{ post.id }}</a><br>
+                <b>Project Manager : </b>{{ post.author }} <br>
+                <b>Collabolators  : </b>{{ post.collaborators }} <br>
+                <b>Deadline : </b>{{ post.deadline|date:"d F, Y, H:i"}}
+
+                <br><br>
+
+
+                <br>
+                <input type="text" id="inputField" placeholder="Add to Interface ... "/>
+                <button onclick="createTask()" type="button">Add ! </button> Click to add ! <br><br>
+
+                <div class="todo-container">
+                  <br><br><div class="status" id="addInputToInterface">
+                    <h4><center>Todo</center></h4>
+                  
+                    
+                    {% for task in tasks %}
+                      {% if task.post.id == post.id %}
+                          {% if task.status == "todo" %}
+                          <div class="todo" draggable="true">
+                            <p>{{ task.name }}</p>
+                          </div> 
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}   
+                      
+                      {% for subtask in subtasks %}
+                      {% if subtask.post.id == post.id %}
+
+                      {% if subtask.status == "todo" %}
+                      <div class="todo" draggable="true">
+                      <p>{{ subtask.name }}</p>
+                      </div> 
+                      {% endif %}
+                      {% endif %}
+
+                    {% endfor %} 
+
+                  </div>
+                  <div class="status">
+                    <h4><center>In Progress</center></h4>
+
+                    {% for task in tasks %}
+                    {% if task.post.id == post.id %}
+
+                      {% if task.status == "in_progress" %}
+                      <div class="todo" draggable="true">
+                        <p>{{ task.name }}</p>
+                      </div> 
+                      {% endif %}
+                      {% endif %}
+
+                      {% endfor %}    
+
+                      {% for subtask in subtasks %}
+                      {% if subtask.post.id == post.id %}
+
+                      {% if subtask.status == "in_progress" %}
+                      <div class="todo" draggable="true">
+                      <p>{{ subtask.name }}</p>
+                      </div> 
+                      {% endif %}
+                      {% endif %}
+
+                    {% endfor %}  
+                  </div>
+                  <div class="status">
+                    <h4><center>Done</center></h4>
+
+                    {% for task in tasks %}
+                      {% if task.status == "finished" %}
+                      <div class="todo" draggable="true">
+                        <p>{{ task.name }}</p>
+                      </div> 
+                      {% endif %}
+                      {% endfor %}    
+
+                      {% for subtask in subtasks %}
+                      {% if subtask.status == "finished" %}
+                      <div class="todo" draggable="true">
+                      <p>{{ subtask.name }}</p>
+                      </div> 
+                      {% endif %}
+                    {% endfor %} 
+                    </div>
+                  <div class="status">
+                    <h4><center>In Revision</center></h4>
+
+                    {% for task in tasks %}
+                      {% if task.status == "in_revision" %}
+                      <div class="todo" draggable="true">
+                        <p>{{ task.name }}</p>
+                      </div> 
+                      {% endif %}
+                      {% endfor %}    
+
+                      {% for subtask in subtasks %}
+                      {% if subtask.status == "in_revision" %}
+                      <div class="todo" draggable="true">
+                      <p>{{ subtask.name }}</p>
+                      </div> 
+                      {% endif %}
+                {% endfor %} 
+              </div>
+            </div>
+            <script src="{% static 'js/status.js' %}"></script>
+
+            
+
+            <!-- SAVE AND RESET PAGE STATE -->
+
+            <a class="button" href="" onclick="clickReset()" >Reset ! </a><br><br>
+
+            <a class="button" href="{% url 'contact' %}">Send an email ! </a><br><br>
+
+            </div>
+
+
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+<!--NOT LOGGED IN ! -->  
+
+{% else %}
+    <h2>You are not Log In ! </h2>
+    You do not have access, you must login to access this page <a href="{% url 'login' %}">Click here to Log In ! </a>
+{% endif %}
+
+
+{% endblock content %}  <!--fin override du content block-->
+
+
+<!--Inspired by Basir Payenda For Drag & Drop System (Source dans le rapport)-->
+<!--Inspired by W3School For Drag & Drop System (Source dans le rapport)-->

@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %} <!--debut override du content block-->
+
+
+
+
+          <div data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000">
+            <h2><b>What is actually HelbManager2022 ?</b></h2>
+              <p><h6>HelbManager2022 is a web application in Django that allows users to manage projects through a simplified task scheduling system.</h6>
+          </div>
+          <br>
+            <img src=" {% static 'images/HelbManager.png' %}" width="700" height="350" data-aos="zoom-in" data-aos-delay="0" data-aos-duration="500"><br><br><br>
+
+          <div data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+          <h4><pre><u>This web application offers several features such as :</u></pre></h4>
+
+        <li>A Registration/Login System on the platform.</li><br>
+        <li>A Profile System for Registered users.</li><br>
+        <li>A System for Creating and Managing Projects as described in this
+description given in this statement (project, task, subtasks, status).</li><br>
+        <li>A System for Registering users to a Project created by a Project Manager.</li><br>
+        <li>A "Drag & Drop" Interface to notify the Status of Tasks and Subtasks of the Project.</li><br>
+        <li>A Notifications System when the Status of a task or sub-task changes.</li><br>
+        <li>An Interface that allows to graphically visualize the chronology of Projects
+progress.</li><br><br>
+      </p>
+        </div>
+        
+
+<div data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1500">
+<h2><b>About Me ! </b></h2><br>
+
+    <div class="row">
+      <div class="column">
+        <div class="ombre">
+          <img src=" {% static 'images/EnesImage.png' %}" style="width:100%">
+          <div class="container">
+              <br><h2>KIZILIRMAK Enes</h2>
+            <p class="title">Student at HELB Ilya Prigogine</p>
+
+            <p> I am a student in computer science since 3 years.</pre>
+                <pre>I did 2 years at INRACI (Secondary School)</pre>
+                <pre>It's my Second years at HELB (High School) </pre>
+                <pre>I learn to code in Python with Django.</pre>
+                <pre>I'm also learning JAVA since two years.</pre>
+                <pre>I also have some experience with languages such as :
+C#, C++ and PHP.</pre></p><br>
+              <h5><b>enes.kizilirmak@helb-prigogine.be</b></h5><br>
+                <a class="button" href="{% url 'contact' %}">Contact-me ! </a><br><br>
+          </div>
+        </div>
+          </div>
+      </div>
+</div>
+    <link rel="stylesheet" href="{% static 'blog/about.css' %}"/>
+
+
+
+{% endblock content %}

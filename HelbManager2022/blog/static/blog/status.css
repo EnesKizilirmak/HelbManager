@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+#addTask {
+    width: 5px;
+    height: 50px;
+    border: 1px solid blue;
+    font-size: 30px;
+}
+
+.tasksss {
+    margin-top: 25px;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #407088;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.deadline-passed {
+  color: red;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-container {
+  width: 750px;
+  height: 100vh;
+  display: flex;
+}
+
+.status {
+  width: 25%;
+  background-color: #f3f3f3;
+  position: relative;
+  padding: 60px 1rem 0.5rem;
+}
+
+
+.inputField {
+  width: 3px;
+  height: 4px;
+  border: 1px solid blue;
+  outline: none;
+  font-size: 100px;
+}
+
+
+.status h4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #407088;
+  color: #f3f3f3;
+  margin: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-color: #fff;
+  box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px,
+  rgba(15, 15, 15, 0.1) 0px 2px 4px;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+
+.submit {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 50px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100px;
+  height: 200px;
+}
+
+.todo .close {
+  position: absolute;
+  right: 1rem;
+  top: 0rem;
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.todo .close:hover {
+  color: #343444;
+}
+
+/* Source inspired by Basir Payenda (Source dans le rapport)
+   Source inspired by W3School (Source dans le rapport)     */

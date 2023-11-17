@@ -1,0 +1,99 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %} <!--debut override du content block-->
+
+{% if user.is_authenticated %}
+
+    <link rel="stylesheet" href="{% static 'chronology/chronology.css' %}">
+
+    <!-- AOS ANIMATION ON SCROLL LIBRARIES (CSS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- AOS ANIMATION ON SCROLL LIBRARIES (JAVASCRIPT) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <h1><b>Project Timeline </b></h1>
+        <h4>Here You Can See the timeline of the Projects.</h4>
+
+    <div class="box-timeline" >
+        <div class="row"></div>
+
+        <div class="black_circle r1">&#128214;</div>
+        <div class="black_circle r2">&#128450;</div>
+        <div class="black_circle r3">&#128188;</div>
+        <div class="black_circle r4">&#128187;</div>
+
+        {% for post in posts %}     
+            {% if post.id == 1 %}
+                <div class="box b1" data-aos="fade-right" data-aos-delay="0" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                    <h2>{{ post.title }}</h2>
+                    <b>Creation Date : </b>{{ post.date_posted|date:"d F, Y, H:i"}} &nbsp&nbsp&nbsp
+                    <b> Deadline : </b>{{ post.deadline|date:"d F, Y, H:i" }}
+                    {% if post.project_finished == True %}
+                        <a href="" class="btn">Project Completed !</a>
+                    {% else %}
+                        <a href="{% url 'blog-status' %}" class="btn">Todo !</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if post.id == 2 %}
+                <div class="box b2" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                    <h2>{{ post.title }}</h2>
+                    <b>Creation Date : </b>{{ post.date_posted|date:"d F, Y, H:i"}} &nbsp&nbsp&nbsp
+                    <b> Deadline : </b>{{ post.deadline|date:"d F, Y, H:i" }}
+                    {% if post.project_finished == True %}
+                        <a href="" class="btn">Project Completed !</a>
+                    {% else %}
+                        <a href="{% url 'blog-status' %}" class="btn">Todo !</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if post.id == 3 %}
+                <div class="box b3" data-aos="fade-right" data-aos-delay="400" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                    <h2>{{ post.title }}</h2>
+                    <b>Creation Date : </b>{{ post.date_posted|date:"d F, Y, H:i"}} &nbsp&nbsp&nbsp
+                    <b> Deadline : </b>{{ post.deadline|date:"d F, Y, H:i" }}
+                    {% if post.project_finished == True %}
+                        <a href="" class="btn">Project Completed !</a>
+                    {% else %}
+                        <a href="{% url 'blog-status' %}" class="btn">Todo !</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if post.id == 8 %}
+                <div class="box b4" data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+                    <h2>{{ post.title }}</h2>
+                    <b>Creation Date : </b>{{ post.date_posted|date:"d F, Y, H:i"}} &nbsp&nbsp&nbsp
+                    <b> Deadline : </b>{{ post.deadline|date:"d F, Y, H:i" }}
+                    {% if post.project_finished == True %}
+                        <a href="" class="btn">Project Completed !</a>
+                    {% else %}
+                        <a href="{% url 'blog-status' %}" class="btn">Todo !</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <h4> Looks like there's a little problem :)</h4> 
+
+<!--NOT LOGGED IN ! -->  
+
+{% else %}
+    <h2>You are not Log In ! </h2>
+    You do not have access, you must login to access this page <a href="{% url 'login' %}">Click here to Log In ! </a>
+{% endif %}
+
+
+
+<!-- TRIGGER ME SCROLL ANIMITATION ! -->
+<script>
+    AOS.init();
+  </script>
+
+{% endblock content %}
+
+

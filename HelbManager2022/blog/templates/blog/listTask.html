@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block content %} <!--debut override du content block-->
+
+<h1>All Tasks list !</h1><br><br>
+
+    {% for task in tasks %}
+    
+        <p class="article-content" href="{% url 'post-detail' task.id %}"><b>Task :</b><pre>- {{ task.name }}</pre></p>
+        <p class="article-content" href="{% url 'post-detail' task.id %}"><b>Status :</b><pre> {{ task.status }}</pre></p>
+        
+        <a class="btn btn-danger btn-sm mt-1 mb-1"  href="{% url 'task-delete' task.id %}">Delete</a>
+
+        <br><br><br><br>
+    {% endfor %}
+
+
+
+
+
+{% endblock content %}  <!--fin override du content block-->

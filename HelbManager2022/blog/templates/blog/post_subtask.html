@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} <!--debut override du content block-->
+
+<h1>Add a subtask ! </h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Create</button>
+    </div></form>
+
+{% endblock content %}
+

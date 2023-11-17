@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} <!--debut override du content block-->
+
+<div data-aos="fade-down"  data-aos-offset="500" data-aos-easing="linear" data-aos-duration="1500">
+<a href="https://mailtrap.io/inboxes"><h1><b>Contact me ! </b></h1></a>
+<h6>You can send me an EMAIL by using this form, Please enter your Name and your EMAIL address !</h6><br>
+</div>
+
+<form method="post" action="." data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+
+    {% csrf_token %}
+
+    {{ form|crispy }}
+
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Send</button>
+    </div>
+</form>
+{% endblock content %}
+

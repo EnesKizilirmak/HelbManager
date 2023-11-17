@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %} <!--debut override du content block-->
+
+<h2>{{ task.name }}</h2>
+<p>{{ task.status }}</p>
+{% if task.completed %}
+    <p>Completed</p>
+{% else %}
+    <p>Not completed</p>
+{% endif %}
+<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'task-delete' task.id %}">Delete </a>
+
+
+{% endblock content %}  <!--fin override du content block-->

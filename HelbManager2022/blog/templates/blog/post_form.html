@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} <!--debut override du content block-->
+
+    <div class="content-section" data-aos="fade-down"  data-aos-offset="500" data-aos-easing="linear" data-aos-duration="1500">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> <b>Project Creation !</b>  </legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+
+                <p>PS : Collaborators : the format is <b>Username1,Username2,etc.</b> No Space but Comma
+                    , for Exemple : <b>'Bob,César'</b></p>
+                    
+                <p>PS : For Date, the format is <b>'Month/Day/Year  Hour:Min'</b>
+                , for Exemple : <b>'12/31/2022 23:59'</b> </p>
+
+             
+
+                <button class="btn btn-outline-info" type="submit" name ="{{ user.username }}">Create</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
